@@ -1,0 +1,852 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Mystixart · Anime & Character Illustrations</title>
+    <!-- Google Fonts: Cinzel (logo) + Inter (UI) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+    <style>
+        /* ---------- CSS RESET & GLOBAL ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #121215;
+            font-family: 'Inter', sans-serif;
+            color: #F4F4F6;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Main container – mobile-first, max 1200px */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- TYPOGRAPHY ---------- */
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            color: #E2B86B;
+        }
+
+        .text-secondary {
+            color: #A1A1AA;
+            font-weight: 400;
+        }
+
+        .accent-gold {
+            color: #E2B86B;
+        }
+
+        /* ---------- BUTTONS ---------- */
+        .btn-primary {
+            display: inline-block;
+            background-color: #E2B86B;
+            color: #121215;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            font-family: 'Inter', sans-serif;
+            border: 1px solid rgba(226, 184, 107, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #f0ca7e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(226, 184, 107, 0.15);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-inquire {
+            background-color: transparent;
+            color: #E2B86B;
+            border: 1.5px solid #E2B86B;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.01em;
+        }
+
+        .btn-inquire:hover {
+            background-color: #E2B86B;
+            color: #121215;
+        }
+
+        /* ---------- HEADER / HERO ---------- */
+        .hero {
+            padding: 3.5rem 0 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero .logo {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 20px rgba(226, 184, 107, 0.15);
+        }
+
+        .hero .subtitle {
+            font-size: 1rem;
+            color: #A1A1AA;
+            max-width: 600px;
+            margin: 0 auto 1rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+        }
+
+        .hero .shipping-note {
+            font-size: 0.8rem;
+            color: #A1A1AA;
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: inline-block;
+            letter-spacing: 0.02em;
+        }
+
+        .hero .shipping-note i {
+            font-style: normal;
+            color: #E2B86B;
+            margin-right: 6px;
+        }
+
+        /* ---------- GALLERY GRID ---------- */
+        .gallery {
+            padding: 2rem 0 3rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #A1A1AA;
+            margin-bottom: 1.8rem;
+            text-align: left;
+            border-left: 3px solid #E2B86B;
+            padding-left: 1rem;
+        }
+
+        .art-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* mobile first */
+            gap: 1.8rem;
+        }
+
+        .art-card {
+            background-color: #1C1C21;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .art-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 32px rgba(0, 0, 0, 0.6);
+            border-color: rgba(226, 184, 107, 0.2);
+        }
+
+        .card-img-wrapper {
+            aspect-ratio: 3 / 4;
+            width: 100%;
+            background-color: #28282e;
+            overflow: hidden;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .art-card:hover .card-img-wrapper img {
+            transform: scale(1.02);
+        }
+
+        .card-content {
+            padding: 1.2rem 1.2rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #F4F4F6;
+            letter-spacing: 0.01em;
+        }
+
+        .card-medium {
+            font-size: 0.8rem;
+            color: #A1A1AA;
+            margin-bottom: 0.2rem;
+            letter-spacing: 0.01em;
+        }
+
+        .card-price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #E2B86B;
+            margin: 0.5rem 0 0.8rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* ---------- CUSTOM COMMISSION BANNER ---------- */
+        .commission-banner {
+            background-color: #1C1C21;
+            border-radius: 24px;
+            padding: 2.2rem 1.5rem;
+            margin: 1.5rem 0 3rem;
+            text-align: center;
+            border: 1px solid rgba(226, 184, 107, 0.15);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+            background-image: radial-gradient(circle at 30% 20%, rgba(226, 184, 107, 0.05) 0%, transparent 60%);
+        }
+
+        .commission-banner h2 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.6rem;
+            color: #F4F4F6;
+        }
+
+        .commission-banner p {
+            color: #A1A1AA;
+            max-width: 500px;
+            margin: 0 auto 1.6rem;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            padding: 2rem 0 2.5rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 0.8rem;
+            color: #A1A1AA;
+            margin-top: auto;
+        }
+
+        .footer .footer-line {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 0.8rem;
+        }
+
+        .footer .subtle {
+            font-size: 0.7rem;
+            color: #5e5e66;
+            margin-top: 0.5rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        /* ---------- MODAL OVERLAY ---------- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: #1C1C21;
+            border-radius: 28px;
+            max-width: 480px;
+            width: 100%;
+            padding: 1.8rem 1.6rem 1.8rem;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(226, 184, 107, 0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.96);
+            transition: transform 0.25s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            background: none;
+            border: none;
+            color: #A1A1AA;
+            font-size: 1.6rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 0 4px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .modal-close:hover {
+            color: #E2B86B;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #F4F4F6;
+            margin-bottom: 0.2rem;
+            padding-right: 1.8rem;
+        }
+
+        .modal-artwork-title {
+            color: #E2B86B;
+            font-weight: 500;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .modal-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #E2B86B;
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
+        }
+
+        .modal-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.07);
+            margin: 1.2rem 0 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #A1A1AA;
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            background-color: #121215;
+            border: 1px solid #2a2a31;
+            border-radius: 14px;
+            padding: 0.75rem 1rem;
+            color: #F4F4F6;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #E2B86B;
+            box-shadow: 0 0 0 2px rgba(226, 184, 107, 0.15);
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23A1A1AA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1rem;
+        }
+
+        .modal-submit {
+            width: 100%;
+            margin-top: 0.8rem;
+            padding: 0.9rem;
+            font-size: 0.95rem;
+            border-radius: 40px;
+        }
+
+        /* ---------- TOAST ---------- */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background-color: #1C1C21;
+            border: 1px solid #E2B86B;
+            color: #F4F4F6;
+            padding: 0.9rem 1.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1200;
+            white-space: nowrap;
+            letter-spacing: 0.01em;
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast i {
+            color: #E2B86B;
+            font-style: normal;
+            margin-right: 8px;
+            font-weight: 600;
+        }
+
+        /* ---------- RESPONSIVE (TABLET & DESKTOP) ---------- */
+        @media (min-width: 640px) {
+            .hero .logo {
+                font-size: 4rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .art-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.8rem;
+            }
+
+            .btn-inquire {
+                width: auto;
+                align-self: flex-start;
+                padding: 0.65rem 1.6rem;
+            }
+
+            .commission-banner {
+                padding: 3rem 2.5rem;
+            }
+
+            .commission-banner h2 {
+                font-size: 2rem;
+            }
+
+            .modal-content {
+                padding: 2rem 2rem 2.2rem;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .art-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+
+            .hero {
+                padding: 5rem 0 2.5rem;
+            }
+
+            .hero .logo {
+                font-size: 4.5rem;
+            }
+
+            .gallery {
+                padding: 2rem 0 4rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+                margin-bottom: 2.2rem;
+            }
+        }
+
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus outline for accessibility */
+        :focus-visible {
+            outline: 2px solid #E2B86B;
+            outline-offset: 2px;
+        }
+
+        button, a, select, input, textarea {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Image fallback (in case image missing) */
+        .card-img-wrapper {
+            background: linear-gradient(135deg, #2a2a31 0%, #1a1a1f 100%);
+            position: relative;
+        }
+
+        .card-img-wrapper img {
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MAIN CONTAINER -->
+    <main class="container">
+        <!-- HEADER / HERO -->
+        <header class="hero">
+            <h1 class="logo">Mystixart</h1>
+            <p class="subtitle">Original Anime Illustrations, Marker Art & Custom Commissions</p>
+            <div class="shipping-note">
+                <i>✦</i> Worldwide shipping available • Sample gallery preview
+            </div>
+        </header>
+
+        <!-- FEATURED ARTWORK GALLERY -->
+        <section class="gallery" aria-label="Featured artwork">
+            <h2 class="section-title">Featured Artwork</h2>
+            <div class="art-grid">
+                <!-- CARD 1 -->
+                <article class="art-card" data-title="Doma — Upper Rank Two" data-price="$XX" data-medium="Full-Color Marker on Paper">
+                    <div class="card-img-wrapper">
+                        <img src="piece1.jpg" alt="Doma — Upper Rank Two, full-color marker illustration" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Doma — Upper Rank Two</h3>
+                        <p class="card-medium">Full-Color Marker on Paper</p>
+                        <p class="card-price">$XX</p>
+                        <button class="btn-inquire" data-artwork="Doma — Upper Rank Two">Inquire to Purchase</button>
+                    </div>
+                </article>
+
+                <!-- CARD 2 -->
+                <article class="art-card" data-title="Zenitsu — Thunder Breathing" data-price="$XX" data-medium="Full-Color Marker on Paper">
+                    <div class="card-img-wrapper">
+                        <img src="piece2.jpg" alt="Zenitsu — Thunder Breathing, full-color marker illustration" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Zenitsu — Thunder Breathing</h3>
+                        <p class="card-medium">Full-Color Marker on Paper</p>
+                        <p class="card-price">$XX</p>
+                        <button class="btn-inquire" data-artwork="Zenitsu — Thunder Breathing">Inquire to Purchase</button>
+                    </div>
+                </article>
+
+                <!-- CARD 3 -->
+                <article class="art-card" data-title="Bakugo — Ink Sketch" data-price="$XX" data-medium="Ink on Toned Kraft Paper">
+                    <div class="card-img-wrapper">
+                        <img src="piece3.jpg" alt="Bakugo — Ink Sketch, ink drawing on toned kraft paper" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Bakugo — Ink Sketch</h3>
+                        <p class="card-medium">Ink on Toned Kraft Paper</p>
+                        <p class="card-price">$XX</p>
+                        <button class="btn-inquire" data-artwork="Bakugo — Ink Sketch">Inquire to Purchase</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- CUSTOM COMMISSION BANNER -->
+        <section class="commission-banner" aria-label="Custom commissions">
+            <h2>Commission a Custom Character</h2>
+            <p>Have a favorite character in mind? I create original anime-style illustrations in marker, ink, and mixed media. Let’s bring your idea to life.</p>
+            <button id="commissionBtn" class="btn-primary">Request Custom Art</button>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-line">
+                <span>© Mystixart</span>
+                <span>•</span>
+                <span>Worldwide Shipping</span>
+            </div>
+            <div class="subtle">Sample Storefront Preview</div>
+        </footer>
+    </main>
+
+    <!-- INQUIRY MODAL (hidden by default) -->
+    <div id="inquiryModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModalBtn" aria-label="Close modal">×</button>
+            <h2 id="modalTitle" class="modal-title">Inquire about artwork</h2>
+            <p id="modalArtworkName" class="modal-artwork-title">—</p>
+            <p id="modalPriceDisplay" class="modal-price">$XX</p>
+
+            <div class="modal-divider"></div>
+
+            <!-- INQUIRY FORM -->
+            <form id="inquiryForm">
+                <!-- hidden field to store artwork title dynamically -->
+                <input type="hidden" id="artworkTitleField" name="artworkTitle" value="">
+
+                <div class="form-group">
+                    <label for="inquiryType">I'm interested in</label>
+                    <select id="inquiryType" name="inquiryType">
+                        <option value="original">Original artwork (1 of 1)</option>
+                        <option value="print">High-quality print</option>
+                        <option value="commission">Custom commission</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullName">Full name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="emailSocial">Email or social handle</label>
+                    <input type="text" id="emailSocial" name="emailSocial" placeholder="@username or email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="shippingCountry">Shipping country</label>
+                    <input type="text" id="shippingCountry" name="shippingCountry" placeholder="e.g., United States, Japan" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message (optional)</label>
+                    <textarea id="message" name="message" placeholder="Any specific details or questions..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary modal-submit">Send inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CONFIRMATION TOAST -->
+    <div id="toast" class="toast" role="status" aria-live="polite">
+        <i>✓</i> Inquiry sent! I'll reply within 48h.
+    </div>
+
+    <!-- ---------- JAVASCRIPT ---------- -->
+    <script>
+        (function() {
+            // --- DOM ELEMENTS ---
+            const modal = document.getElementById('inquiryModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const modalArtworkName = document.getElementById('modalArtworkName');
+            const modalPriceDisplay = document.getElementById('modalPriceDisplay');
+            const artworkTitleField = document.getElementById('artworkTitleField');
+            const inquiryForm = document.getElementById('inquiryForm');
+            const toast = document.getElementById('toast');
+            const commissionBtn = document.getElementById('commissionBtn');
+
+            // All inquire buttons inside cards
+            const inquireButtons = document.querySelectorAll('.btn-inquire');
+
+            // Helper: open modal with given artwork title & price
+            function openModal(artworkTitle, artworkPrice) {
+                // set modal text
+                modalArtworkName.textContent = artworkTitle;
+                modalPriceDisplay.textContent = artworkPrice || '$XX';
+                artworkTitleField.value = artworkTitle;
+
+                // pre-fill inquiry type based on artwork? default to "original"
+                const inquirySelect = document.getElementById('inquiryType');
+                if (inquirySelect) inquirySelect.value = 'original';
+
+                // show modal with active class
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // prevent background scroll
+            }
+
+            // Helper: close modal
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // --- EVENT LISTENERS for "Inquire to Purchase" buttons ---
+            inquireButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Get artwork details from the closest card
+                    const card = this.closest('.art-card');
+                    let title = this.dataset.artwork || 'Artwork inquiry';
+                    let price = '$XX';
+
+                    if (card) {
+                        // try to read from data attributes or fallback to DOM
+                        const cardTitle = card.querySelector('.card-title')?.textContent || title;
+                        const cardPrice = card.querySelector('.card-price')?.textContent || '$XX';
+                        title = this.dataset.artwork || cardTitle;
+                        price = cardPrice;
+                    }
+                    openModal(title, price);
+                });
+            });
+
+            // --- COMMISSION BUTTON opens same modal with custom message ---
+            commissionBtn.addEventListener('click', function() {
+                openModal('Custom Commission Request', '$XX (starting at)');
+                // pre-select "commission" in dropdown
+                const inquirySelect = document.getElementById('inquiryType');
+                if (inquirySelect) inquirySelect.value = 'commission';
+            });
+
+            // --- CLOSE MODAL: click on X, or overlay background ---
+            closeModalBtn.addEventListener('click', closeModal);
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Escape key closes modal
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            // --- SHOW TOAST (confirmation) ---
+            function showToast(message) {
+                // set message if provided
+                if (message) {
+                    toast.innerHTML = `<i>✓</i> ${message}`;
+                } else {
+                    toast.innerHTML = `<i>✓</i> Inquiry sent! I'll reply within 48h.`;
+                }
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3500);
+            }
+
+            // --- FORM SUBMIT (inquiry) ---
+            inquiryForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Basic validation (required fields are handled by HTML5, but we double-check)
+                const fullName = document.getElementById('fullName');
+                const emailSocial = document.getElementById('emailSocial');
+                const shippingCountry = document.getElementById('shippingCountry');
+
+                if (!fullName.value.trim() || !emailSocial.value.trim() || !shippingCountry.value.trim()) {
+                    // trigger native validation if fields are empty
+                    fullName.reportValidity();
+                    emailSocial.reportValidity();
+                    shippingCountry.reportValidity();
+                    return;
+                }
+
+                // Simulate sending data – in a real app you'd fetch() to an endpoint.
+                // For demonstration, we show a toast and reset the form.
+
+                // Optional: collect data (for console/debug)
+                const formData = {
+                    artwork: artworkTitleField.value,
+                    inquiryType: document.getElementById('inquiryType').value,
+                    name: fullName.value.trim(),
+                    contact: emailSocial.value.trim(),
+                    country: shippingCountry.value.trim(),
+                    message: document.getElementById('message').value.trim()
+                };
+                console.log('Inquiry submitted:', formData);
+
+                // Show success toast
+                showToast('Inquiry sent! I\'ll reply within 48h.');
+
+                // Close modal
+                closeModal();
+
+                // Reset form (optional, but keep nice UX)
+                inquiryForm.reset();
+                // also reset hidden field (will be set again on next open)
+                artworkTitleField.value = '';
+                // reset inquiry type to default "original"
+                document.getElementById('inquiryType').value = 'original';
+            });
+
+            // --- PREVENT BODY SCROLL when modal open (already handled in open/close) ---
+            // but we need to ensure overflow is not locked on page load
+            window.addEventListener('load', function() {
+                document.body.style.overflow = '';
+            });
+
+            // --- IMAGE FALLBACK (in case piece1.jpg etc. missing) ---
+            // optional: add a subtle background for missing images; CSS handles gradient background.
+            // but we can add onerror to show a placeholder icon? Not necessary, but good.
+            const images = document.querySelectorAll('.card-img-wrapper img');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    // Apply a placeholder background to the wrapper (already gradient)
+                    // Optionally, hide broken image icon
+                    this.style.opacity = '0.3';
+                    this.alt = 'Artwork preview unavailable';
+                    // you could also replace with a data-uri placeholder, but we keep it minimal.
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
